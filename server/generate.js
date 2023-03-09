@@ -48,7 +48,7 @@ module.exports.generator = async function (req, res) {
         role: 'user',
         content: generatePrompt1(prjName, prjDesc, req.file),
       }],
-      temperature: 0.6,
+      temperature: 0.9,
     });
     res.status(200).json({ result: completion.data.choices[0].message.content });
   } catch(error) {
@@ -68,21 +68,14 @@ module.exports.generator = async function (req, res) {
 }
 
 
-function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: ${capitalizedAnimal}
-Names:`;
-}
-
 function generatePrompt1(prjName, prjDesc, file) {
-  return `Give me a test case document about a ${prjName} project. ${prjDesc} The protobuf file of its API is as follows:
+  return `
+  帮我写一份测试用例文档。该文档所属项目是一个 ${prjName}，${prjDesc}。该文档用于提供给测试人员进行 API 接口测试，注意该文档不是测试报告，是测试用例文档，文档中需包含每个接口的描述以及测试用例列表，以 Markdown 形式输出。该项目 API 接口的 .proto 文件内容如下：
 
   ${file.buffer.toString('utf8')}
-`
+  
+  `
 }
+
+// openstack 云主机管理平台
+// 该项目基于 gopher-cloud 库实现，提供一套 API 接口，实现对 openstack 云主机的管理。
