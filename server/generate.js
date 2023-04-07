@@ -70,7 +70,7 @@ module.exports.generator = async function (req, res) {
 
 function generatePrompt1(prjName, prjDesc, file) {
   return `
-  帮我写一份测试用例文档。该文档所属项目是一个 ${prjName}，${prjDesc}。该文档用于提供给测试人员进行 API 接口测试，注意该文档不是测试报告，是测试用例文档，文档中需包含每个接口的描述以及测试用例列表，以 Markdown 形式输出。该项目 API 接口的 .proto 文件内容如下：
+  帮我写一份测试用例文档。该文档所属项目名为 ${prjName}，${prjDesc}。该文档用于提供给测试人员进行 API 接口测试，注意该文档不是测试报告，是测试用例文档，文档中需包含每个接口的描述以及测试用例列表，以 Markdown 形式输出。该项目 API 接口的 .proto 文件内容如下：
 
   ${file.buffer.toString('utf8')}
   
